@@ -1,5 +1,5 @@
 import React from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Platform, Pressable, StyleSheet, Text, View } from "react-native";
 
 interface CategoryCardProps {
   title: string;
@@ -10,14 +10,13 @@ const CategoryCard = ({ title, color }: CategoryCardProps) => {
   return (
     <View style={style.gridItemContainer}>
       <Pressable
-        style={({ pressed }) =>
-          pressed
-            ? [style.activePress, style.pressableContainer]
-            : style.pressableContainer
-        }
+        style={({ pressed }) => [
+          pressed ? style.activePress : null,
+          style.pressableContainer,
+        ]}
         android_ripple={{ color: "#ccc" }}
       >
-        <View style={style.innerContainer}>
+        <View style={[style.innerContainer, { backgroundColor: color }]}>
           <Text style={style.title}>{title}</Text>
         </View>
       </Pressable>
@@ -26,6 +25,8 @@ const CategoryCard = ({ title, color }: CategoryCardProps) => {
 };
 
 export default CategoryCard;
+
+const isAndroid = Platform.OS === "android";
 
 const style = StyleSheet.create({
   gridItemContainer: {
@@ -39,6 +40,7 @@ const style = StyleSheet.create({
     shadowRadius: 8,
     shadowOpacity: 0.25,
     backgroundColor: "white",
+    overflow: isAndroid ? "hidden" : "visible",
   },
   pressableContainer: {
     flex: 1,
@@ -48,12 +50,14 @@ const style = StyleSheet.create({
     padding: 16,
     justifyContent: "center",
     alignItems: "center",
+    borderRadius: 8,
   },
   title: {
     fontWeight: "bold",
     fontSize: 18,
   },
   activePress: {
-    backgroundColor: "#ccc",
+    opacity: 0.5,
+    borderRadius: 8,
   },
 });
