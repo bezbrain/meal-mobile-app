@@ -53,8 +53,8 @@ const style = StyleSheet.create({
     borderRadius: 8,
   },
   title: {
-    fontWeight: "bold",
     fontSize: 18,
+    fontFamily: "roboto-bold",
   },
   activePress: {
     opacity: 0.5,
