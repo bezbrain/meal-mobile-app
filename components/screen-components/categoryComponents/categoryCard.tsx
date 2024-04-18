@@ -9,9 +9,16 @@ interface CategoryCardProps {
 const CategoryCard = ({ title, color }: CategoryCardProps) => {
   return (
     <View style={style.gridItemContainer}>
-      <Pressable style={style.pressableContainer}>
+      <Pressable
+        style={({ pressed }) =>
+          pressed
+            ? [style.activePress, style.pressableContainer]
+            : style.pressableContainer
+        }
+        android_ripple={{ color: "#ccc" }}
+      >
         <View style={style.innerContainer}>
-          <Text>{title}</Text>
+          <Text style={style.title}>{title}</Text>
         </View>
       </Pressable>
     </View>
@@ -28,7 +35,7 @@ const style = StyleSheet.create({
     borderRadius: 8,
     elevation: 4,
     shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: { width: 0, height: 5 },
     shadowRadius: 8,
     shadowOpacity: 0.25,
     backgroundColor: "white",
@@ -41,5 +48,12 @@ const style = StyleSheet.create({
     padding: 16,
     justifyContent: "center",
     alignItems: "center",
+  },
+  title: {
+    fontWeight: "bold",
+    fontSize: 18,
+  },
+  activePress: {
+    backgroundColor: "#ccc",
   },
 });
