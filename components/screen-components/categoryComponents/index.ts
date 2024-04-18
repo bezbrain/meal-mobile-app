@@ -1,3 +1,3 @@
-import CategoryGridTile from "./categoryGridTile";
+import CategoryCard from "./categoryCard";
 
-export { CategoryGridTile };
+export { CategoryCard };
