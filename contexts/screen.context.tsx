@@ -5,9 +5,17 @@ const AppContext = createContext<any>(undefined);
 
 export const ScreenProvider = ({ children }: ChildrenProps) => {
   const [categoryColumns, setCategoryColumns] = useState<number>(2);
+  const [mealItemsColumns, setMealItemsColumns] = useState<number>(1);
 
   return (
-    <AppContext.Provider value={{ categoryColumns, setCategoryColumns }}>
+    <AppContext.Provider
+      value={{
+        categoryColumns,
+        setCategoryColumns,
+        mealItemsColumns,
+        setMealItemsColumns,
+      }}
+    >
       {children}
     </AppContext.Provider>
   );
