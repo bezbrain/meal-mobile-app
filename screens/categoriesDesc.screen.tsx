@@ -1,11 +1,5 @@
 import React, { useEffect } from "react";
-import {
-  FlatList,
-  StyleSheet,
-  Text,
-  View,
-  useWindowDimensions,
-} from "react-native";
+import { FlatList, StyleSheet, View, useWindowDimensions } from "react-native";
 import { useRoute } from "@react-navigation/native";
 import { RouteProp } from "@react-navigation/native";
 import { MEALS } from "../data/dummy-data";
@@ -63,5 +57,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
+    borderWidth: 2,
   },
 });

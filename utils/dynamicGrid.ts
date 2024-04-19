@@ -1,11 +1,11 @@
 export const dynamicGrid = (
-  initialGridValue: number,
-  shortHeightValue: number,
-  smallWidthValue: number,
+  initialGridValue: number | string,
+  shortHeightValue: number | string,
+  smallWidthValue: number | string,
   height: number,
   width: number
 ) => {
-  let containerGrid = initialGridValue;
+  let containerGrid: number | string = initialGridValue;
   if (height < 400) {
     containerGrid = shortHeightValue;
   }
