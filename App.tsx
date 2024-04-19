@@ -31,10 +31,10 @@ export default function App() {
   return (
     <>
       <StatusBar style="light" />
-      <NavigationContainer>
-        <ScreenProvider>
+      <ScreenProvider>
+        <NavigationContainer>
           <View style={[styles.container, appPaddingStyles]}>
-            <Stack.Navigator>
+            <Stack.Navigator initialRouteName="MealsCategories">
               <Stack.Screen
                 name="MealsCategories"
                 component={CategoriesScreen}
@@ -45,8 +45,8 @@ export default function App() {
               />
             </Stack.Navigator>
           </View>
-        </ScreenProvider>
-      </NavigationContainer>
+        </NavigationContainer>
+      </ScreenProvider>
     </>
   );
 }

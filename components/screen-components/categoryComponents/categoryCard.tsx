@@ -1,14 +1,22 @@
 import { NavigationProp } from "@react-navigation/native";
 import React from "react";
 import { Platform, Pressable, StyleSheet, Text, View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+
+// Replace 'StackParamList' with the type of your navigation stack
+type RootStackParamList = {
+  MealsDescription: undefined;
+  // Add other screens here if needed
+};
 
 interface CategoryCardProps {
   title: string;
   color: string;
-  navigation: NavigationProp<any>;
 }
 
-const CategoryCard = ({ title, color, navigation }: CategoryCardProps) => {
+const CategoryCard = ({ title, color }: CategoryCardProps) => {
+  const navigation: NavigationProp<RootStackParamList> = useNavigation();
+
   const handleCategoryPress = () => {
     navigation.navigate("MealsDescription");
   };
