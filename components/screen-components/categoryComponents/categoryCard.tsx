@@ -3,22 +3,29 @@ import React from "react";
 import { Platform, Pressable, StyleSheet, Text, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-// Replace 'StackParamList' with the type of your navigation stack
+// Define the type for the navigation route
+type MealsDescriptionRouteParams = {
+  categoryId: string;
+};
+
 type RootStackParamList = {
-  MealsDescription: undefined;
+  MealsDescription: MealsDescriptionRouteParams;
   // Add other screens here if needed
 };
 
 interface CategoryCardProps {
+  id: string;
   title: string;
   color: string;
 }
 
-const CategoryCard = ({ title, color }: CategoryCardProps) => {
+const CategoryCard = ({ id, title, color }: CategoryCardProps) => {
   const navigation: NavigationProp<RootStackParamList> = useNavigation();
 
-  const handleCategoryPress = () => {
-    navigation.navigate("MealsDescription");
+  const handleCategoryPress = (id: string) => {
+    navigation.navigate("MealsDescription", {
+      categoryId: id,
+    });
   };
 
   return (
@@ -29,7 +36,7 @@ const CategoryCard = ({ title, color }: CategoryCardProps) => {
           style.pressableContainer,
         ]}
         android_ripple={{ color: "#ccc" }}
-        onPress={handleCategoryPress}
+        onPress={() => handleCategoryPress(id)}
       >
         <View style={[style.innerContainer, { backgroundColor: color }]}>
           <Text style={style.title}>{title}</Text>

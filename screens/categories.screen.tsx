@@ -3,7 +3,6 @@ import { CATEGORIES } from "../data/dummy-data";
 import { FlatList, View, useWindowDimensions } from "react-native";
 import { CategoryCard } from "../components/screen-components/categoryComponents";
 import { useScreenContext } from "../contexts/screen.context";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 const CategoriesScreen = () => {
   const { categoryColumns, setCategoryColumns } = useScreenContext();
@@ -28,7 +27,11 @@ const CategoriesScreen = () => {
         alwaysBounceVertical={true}
         data={CATEGORIES}
         renderItem={(eachObj) => (
-          <CategoryCard title={eachObj.item.title} color={eachObj.item.color} />
+          <CategoryCard
+            title={eachObj.item.title}
+            color={eachObj.item.color}
+            id={eachObj.item.id}
+          />
         )}
         keyExtractor={(each) => each.id}
         numColumns={categoryColumns}
