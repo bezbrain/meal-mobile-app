@@ -3,8 +3,24 @@ import { CATEGORIES } from "../data/dummy-data";
 import { FlatList, View, useWindowDimensions } from "react-native";
 import { CategoryCard } from "../components/screen-components/categoryComponents";
 import { useScreenContext } from "../contexts/screen.context";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
-const CategoriesScreen = () => {
+// Assuming your navigation stack is defined as StackNavigator
+type StackParamList = {
+  MealsDescription: undefined; // Define your screen names here
+  // Add other screen names as needed
+};
+
+type CategoriesScreenNavigationProp = NativeStackNavigationProp<
+  StackParamList,
+  "MealsDescription"
+>;
+
+interface CategoriesScreenProps {
+  navigation: CategoriesScreenNavigationProp;
+}
+
+const CategoriesScreen = ({ navigation }: CategoriesScreenProps) => {
   const { categoryColumns, setCategoryColumns } = useScreenContext();
 
   const { width, height } = useWindowDimensions();
@@ -27,7 +43,11 @@ const CategoriesScreen = () => {
         alwaysBounceVertical={true}
         data={CATEGORIES}
         renderItem={(eachObj) => (
-          <CategoryCard title={eachObj.item.title} color={eachObj.item.color} />
+          <CategoryCard
+            title={eachObj.item.title}
+            color={eachObj.item.color}
+            navigation={navigation}
+          />
         )}
         keyExtractor={(each) => each.id}
         numColumns={categoryColumns}

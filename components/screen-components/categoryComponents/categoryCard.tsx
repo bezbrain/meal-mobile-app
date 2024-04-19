@@ -1,12 +1,18 @@
+import { NavigationProp } from "@react-navigation/native";
 import React from "react";
 import { Platform, Pressable, StyleSheet, Text, View } from "react-native";
 
 interface CategoryCardProps {
   title: string;
   color: string;
+  navigation: NavigationProp<any>;
 }
 
-const CategoryCard = ({ title, color }: CategoryCardProps) => {
+const CategoryCard = ({ title, color, navigation }: CategoryCardProps) => {
+  const handleCategoryPress = () => {
+    navigation.navigate("MealsDescription");
+  };
+
   return (
     <View style={style.gridItemContainer}>
       <Pressable
@@ -15,6 +21,7 @@ const CategoryCard = ({ title, color }: CategoryCardProps) => {
           style.pressableContainer,
         ]}
         android_ripple={{ color: "#ccc" }}
+        onPress={handleCategoryPress}
       >
         <View style={[style.innerContainer, { backgroundColor: color }]}>
           <Text style={style.title}>{title}</Text>

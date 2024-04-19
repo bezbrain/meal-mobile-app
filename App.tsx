@@ -5,7 +5,7 @@ import {
   View,
   useWindowDimensions,
 } from "react-native";
-import { CategoriesScreen } from "./screens";
+import { CategoriesDescScreen, CategoriesScreen } from "./screens";
 import { ScreenProvider } from "./contexts/screen.context";
 import { appFonts } from "./utils/fonts";
 import AppLoading from "expo-app-loading";
@@ -36,8 +36,12 @@ export default function App() {
           <View style={[styles.container, appPaddingStyles]}>
             <Stack.Navigator>
               <Stack.Screen
-                name="Meals Categories"
+                name="MealsCategories"
                 component={CategoriesScreen}
+              />
+              <Stack.Screen
+                name="MealsDescription"
+                component={CategoriesDescScreen}
               />
             </Stack.Navigator>
           </View>
