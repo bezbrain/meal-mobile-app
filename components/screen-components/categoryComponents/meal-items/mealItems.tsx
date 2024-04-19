@@ -26,7 +26,10 @@ const MealItems = ({
 }: MealItemsProps) => {
   return (
     <View style={styles.container}>
-      <Pressable>
+      <Pressable
+        android_ripple={{ color: "#ded8d8" }}
+        style={({ pressed }) => (pressed ? styles.activeMeal : null)}
+      >
         <View style={styles.innerContainer}>
           <View>
             <Image source={{ uri: imageUrl }} style={styles.image} />
@@ -58,6 +61,9 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     elevation: 4,
     ...shadowStyles,
+  },
+  activeMeal: {
+    opacity: 0.75,
   },
   innerContainer: {
     borderRadius: 8,
