@@ -2,6 +2,7 @@ import { NavigationProp } from "@react-navigation/native";
 import React from "react";
 import { Platform, Pressable, StyleSheet, Text, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import shadowStyles from "../../../styles/shadow";
 
 // Define the type for the navigation route
 type MealsDescriptionRouteParams = {
@@ -57,10 +58,7 @@ const style = StyleSheet.create({
     height: 150,
     borderRadius: 8,
     elevation: 4,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 5 },
-    shadowRadius: 8,
-    shadowOpacity: 0.25,
+    ...shadowStyles,
     backgroundColor: "white",
     overflow: isAndroid ? "hidden" : "visible",
   },
