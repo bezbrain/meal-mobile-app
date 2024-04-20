@@ -1,11 +1,9 @@
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import {
-  Button,
   Image,
   ScrollView,
   StyleSheet,
-  Text,
   View,
   useWindowDimensions,
 } from "react-native";
@@ -55,7 +53,7 @@ const MealDetailsScreen = () => {
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => {
-        return <IconButton />;
+        return <IconButton icon="heart" color="red" />;
       },
     });
   }, [navigation]);
