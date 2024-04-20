@@ -5,16 +5,15 @@ export const generalOptions = {
   contentStyle: { backgroundColor: "#3f2f25" },
 };
 
-interface CategoryProp {
+interface DataProp {
   id: string;
   title: string;
   color: string;
 }
 
 // Dynamic display of meaal items titile
-export const mealItemsTitles = (route: any, CATEGORIES: CategoryProp[]) => {
-  const catParamId = route.params?.categoryId;
-  // Find title from the category data
-  const newCategory = CATEGORIES.find((each) => each.id === catParamId);
-  return newCategory;
+export const itemsTitles = (data: any, paramId: string) => {
+  // Find title from the data
+  const newFind = data.find((each: { id: string }) => each.id === paramId);
+  return newFind;
 };

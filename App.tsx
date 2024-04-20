@@ -10,11 +10,8 @@ import { appFonts } from "./utils/fonts";
 import AppLoading from "expo-app-loading";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { CATEGORIES } from "./data/dummy-data";
-import {
-  generalOptions,
-  mealItemsTitles,
-} from "./screens/screenOptions/options";
+import { CATEGORIES, MEALS } from "./data/dummy-data";
+import { generalOptions, itemsTitles } from "./screens/screenOptions/options";
 
 interface RouteProps {
   route: any;
@@ -50,14 +47,26 @@ const App = () => {
               name="MealsDescription"
               component={CategoriesDescScreen}
               options={({ route, navigation }: RouteProps) => {
-                const newCategory = mealItemsTitles(route, CATEGORIES);
+                const paramId = route.params?.categoryId;
+                const newCategory = itemsTitles(CATEGORIES, paramId);
 
                 return {
                   title: newCategory?.title,
                 };
               }}
             />
-            <Stack.Screen name="MealDetails" component={MealDetailsScreen} />
+            <Stack.Screen
+              name="MealDetails"
+              component={MealDetailsScreen}
+              options={({ route, navigation }: RouteProps) => {
+                const mealIdParam = route.params.mealId;
+                const newMeal = itemsTitles(MEALS, mealIdParam);
+
+                return {
+                  title: newMeal?.title,
+                };
+              }}
+            />
           </Stack.Navigator>
         </NavigationContainer>
       </ScreenProvider>

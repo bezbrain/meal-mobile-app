@@ -46,6 +46,7 @@ const MealItems = ({
 
   const navigation: NavigationProp<RootStackParamList> = useNavigation();
 
+  // NAVIGATE TO THE MEALS DETAILS SCREEN
   const handleMealDetailsPress = (id: string) => {
     console.log(id);
 
