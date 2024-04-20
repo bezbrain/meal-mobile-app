@@ -28,5 +28,6 @@ const styles = StyleSheet.create({
   },
   detailItems: {
     fontSize: 12,
+    fontFamily: "roboto-regular",
   },
 });

@@ -5,6 +5,7 @@ import { MEALS } from "../data/dummy-data";
 import {
   Details,
   MealTitle,
+  MoreMealDetails,
 } from "../components/screen-components/categoryComponents";
 
 // Define the type for the navigation route
@@ -35,26 +36,10 @@ const MealDetailsScreen = () => {
       />
       <ScrollView>
         <MealTitle title="Ingredients" />
-        {isMeal?.ingredients?.map((each: string, i: number) => {
-          return (
-            <View style={styles.listContainer} key={i}>
-              <Text style={styles.listItems}>
-                {i + 1}. {each}
-              </Text>
-            </View>
-          );
-        })}
+        <MoreMealDetails isMeal={isMeal?.ingredients} />
 
         <MealTitle title="Steps" />
-        {isMeal?.steps?.map((each: string, i: number) => {
-          return (
-            <View style={styles.listContainer} key={i}>
-              <Text style={styles.listItems}>
-                {i + 1}. {each}
-              </Text>
-            </View>
-          );
-        })}
+        <MoreMealDetails isMeal={isMeal?.steps} />
       </ScrollView>
     </View>
   );
@@ -76,13 +61,5 @@ const styles = StyleSheet.create({
   image: {
     width: "100%",
     height: 200,
-  },
-  listContainer: {
-    paddingVertical: 8,
-    paddingHorizontal: 24,
-  },
-  listItems: {
-    fontSize: 18,
-    fontFamily: "roboto-regular",
   },
 });
