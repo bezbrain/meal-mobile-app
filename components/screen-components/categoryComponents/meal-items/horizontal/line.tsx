@@ -9,8 +9,8 @@ export default Line;
 
 const styles = StyleSheet.create({
   horizontalLine: {
-    borderWidth: 0.5,
-    marginVertical: 8,
+    borderWidth: 1,
+    margin: 16,
     opacity: 0.25,
   },
 });
