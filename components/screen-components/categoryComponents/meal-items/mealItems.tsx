@@ -11,6 +11,7 @@ import {
 import shadowStyles from "../../../../styles/shadow";
 import { dynamicGrid } from "../../../../utils/dynamicGrid";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
+import { Details, MealTitle } from "..";
 
 // Define the type for the navigation route
 type MealDetailsRouteParams = {
@@ -48,8 +49,6 @@ const MealItems = ({
 
   // NAVIGATE TO THE MEALS DETAILS SCREEN
   const handleMealDetailsPress = (id: string) => {
-    console.log(id);
-
     navigation.navigate("MealDetails", {
       mealId: id,
     });
@@ -70,16 +69,14 @@ const MealItems = ({
         <View style={styles.innerContainer}>
           <View>
             <Image source={{ uri: imageUrl }} style={styles.image} />
-            <Text style={styles.title}>{title}</Text>
+            <MealTitle title={title} />
           </View>
 
-          <View style={styles.mealdetailsContainer}>
-            <Text style={styles.detailItems}>{duration}mins</Text>
-            <Text style={styles.detailItems}>{complexity.toUpperCase()}</Text>
-            <Text style={styles.detailItems}>
-              {affordability.toUpperCase()}
-            </Text>
-          </View>
+          <Details
+            complexity={complexity}
+            duration={duration}
+            affordability={affordability}
+          />
         </View>
       </Pressable>
     </View>
@@ -110,21 +107,5 @@ const styles = StyleSheet.create({
   image: {
     width: "100%",
     height: 200,
-  },
-  title: {
-    textAlign: "center",
-    fontFamily: "roboto-bold",
-    fontWeight: "bold",
-    fontSize: 20,
-    marginVertical: 8,
-  },
-  mealdetailsContainer: {
-    padding: 16,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  detailItems: {
-    fontSize: 12,
   },
 });
