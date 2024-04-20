@@ -12,6 +12,7 @@ import {
 import { MEALS } from "../data/dummy-data";
 import {
   Details,
+  IconButton,
   Line,
   MealTitle,
   MoreMealDetails,
@@ -51,17 +52,13 @@ const MealDetailsScreen = () => {
     paddingBottom: mealDetailsPadding,
   };
 
-  const handleHeaderButton = () => {
-    console.log("Button is pressed");
-  };
-
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => {
-        return <Button title="Tap me!" onPress={handleHeaderButton} />;
+        return <IconButton />;
       },
     });
-  }, [navigation, handleHeaderButton]);
+  }, [navigation]);
 
   useEffect(() => {
     // Get single meal by id
