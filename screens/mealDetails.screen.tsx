@@ -4,6 +4,7 @@ import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
 import { MEALS } from "../data/dummy-data";
 import {
   Details,
+  Line,
   MealTitle,
   MoreMealDetails,
 } from "../components/screen-components/categoryComponents";
@@ -29,9 +30,14 @@ const MealDetailsScreen = () => {
         complexity={isMeal?.complexity}
         affordability={isMeal?.affordability}
       />
+
+      <Line />
+
       <ScrollView>
         <MealTitle title="Ingredients" />
         <MoreMealDetails isMeal={isMeal?.ingredients} />
+
+        <Line />
 
         <MealTitle title="Steps" />
         <MoreMealDetails isMeal={isMeal?.steps} />
