@@ -68,14 +68,11 @@ const isAndroid = Platform.OS === "android";
 const styles = StyleSheet.create({
   container: {
     marginVertical: 12,
-    // marginHorizontal: 10,
     overflow: isAndroid ? "hidden" : "visible",
     backgroundColor: "white",
     borderRadius: 8,
     elevation: 4,
     ...shadowStyles,
-    // width: "48%",
-    // borderWidth: 2,
   },
   activeMeal: {
     opacity: 0.75,
@@ -88,7 +85,6 @@ const styles = StyleSheet.create({
   image: {
     width: "100%",
     height: 200,
-    // borderRadius: 8,
   },
   title: {
     textAlign: "center",

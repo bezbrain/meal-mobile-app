@@ -10,6 +10,11 @@ const CategoriesScreen = () => {
 
   const { width, height } = useWindowDimensions();
 
+  // DYNAMIC PADDING BOTTOM FOR THE MEAL CATEGORY
+  const catPaddingStyles = {
+    paddingBottom: width < 360 ? 32 : height < 400 ? 12 : 32,
+  };
+
   //   DYNAMICALLY ADD GRIP COLUMNS
   useEffect(() => {
     const columns = dynamicGrid(2, 4, 2, height, width);
@@ -17,7 +22,7 @@ const CategoriesScreen = () => {
   }, [width, height]);
 
   return (
-    <View>
+    <View style={catPaddingStyles}>
       <FlatList
         alwaysBounceVertical={true}
         data={CATEGORIES}
