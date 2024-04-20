@@ -8,7 +8,7 @@ interface MoreMealDetailsProp {
 const MoreMealDetails = ({ isMeal }: MoreMealDetailsProp) => {
   return (
     <>
-      {isMeal.map((each: string, i: number) => {
+      {isMeal?.map((each: string, i: number) => {
         return (
           <View style={styles.listContainer} key={i}>
             <Text style={styles.listItems}>

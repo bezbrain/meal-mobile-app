@@ -8,11 +8,6 @@ import {
   MoreMealDetails,
 } from "../components/screen-components/categoryComponents";
 
-// Define the type for the navigation route
-// type MealDetailsRouteParams = {
-//   mealId: string;
-// };
-
 const MealDetailsScreen = () => {
   const route = useRoute<RouteProp<any>>();
   const detailsIdParam = route.params?.mealId;
@@ -51,12 +46,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     minHeight: "100%",
-    margin: 16,
+    marginVertical: 16,
+    marginHorizontal: 8,
     backgroundColor: "white",
     borderRadius: 8,
     overflow: "hidden",
     paddingBottom: 48,
-    borderWidth: 2,
   },
   image: {
     width: "100%",
