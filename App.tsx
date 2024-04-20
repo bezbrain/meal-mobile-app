@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, View } from "react-native";
+import { Button, StyleSheet, Text, View } from "react-native";
 import {
   CategoriesDescScreen,
   CategoriesScreen,
@@ -64,6 +64,10 @@ const App = () => {
 
                 return {
                   title: newMeal?.title,
+                  // Adding button to screen header, but this won't allow for interactivity. For interactivity, you can set the option in the screen component itself
+                  // headerRight: () => {
+                  //   return <Button title="Tap me!" />;
+                  // },
                 };
               }}
             />

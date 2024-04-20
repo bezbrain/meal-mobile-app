@@ -1,6 +1,7 @@
-import { RouteProp, useRoute } from "@react-navigation/native";
-import React, { useEffect, useState } from "react";
+import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import {
+  Button,
   Image,
   ScrollView,
   StyleSheet,
@@ -19,6 +20,7 @@ import { dynamicGrid } from "../utils/dynamicGrid";
 
 const MealDetailsScreen = () => {
   const route = useRoute<RouteProp<any>>();
+  const navigation = useNavigation();
   const detailsIdParam = route.params?.mealId;
 
   const [isMeal, setIsMeal] = useState<any>({});
@@ -48,6 +50,18 @@ const MealDetailsScreen = () => {
     flexDirection: flexContainer,
     paddingBottom: mealDetailsPadding,
   };
+
+  const handleHeaderButton = () => {
+    console.log("Button is pressed");
+  };
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => {
+        return <Button title="Tap me!" onPress={handleHeaderButton} />;
+      },
+    });
+  }, [navigation, handleHeaderButton]);
 
   useEffect(() => {
     // Get single meal by id
