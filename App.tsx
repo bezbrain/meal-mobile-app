@@ -6,6 +6,16 @@ import { appFonts } from "./utils/fonts";
 import AppLoading from "expo-app-loading";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { CATEGORIES } from "./data/dummy-data";
+import {
+  generalOptions,
+  mealItemsTitles,
+} from "./screens/screenOptions/options";
+
+interface RouteProps {
+  route: any;
+  navigation: any;
+}
 
 const Stack = createNativeStackNavigator();
 
@@ -23,11 +33,7 @@ const App = () => {
         <NavigationContainer>
           <Stack.Navigator
             initialRouteName="MealsCategories"
-            screenOptions={{
-              headerStyle: { backgroundColor: "#351401" },
-              headerTintColor: "white",
-              contentStyle: { backgroundColor: "#3f2f25" },
-            }}
+            screenOptions={generalOptions}
           >
             <Stack.Screen
               name="MealsCategories"
@@ -39,8 +45,12 @@ const App = () => {
             <Stack.Screen
               name="MealsDescription"
               component={CategoriesDescScreen}
-              options={{
-                title: "Meals",
+              options={({ route, navigation }: RouteProps) => {
+                const newCategory = mealItemsTitles(route, CATEGORIES);
+
+                return {
+                  title: newCategory?.title,
+                };
               }}
             />
           </Stack.Navigator>
