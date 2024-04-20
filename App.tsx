@@ -9,7 +9,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 const Stack = createNativeStackNavigator();
 
-export default function App() {
+const App = () => {
   const fontsLoaded = appFonts();
 
   if (!fontsLoaded) {
@@ -18,29 +18,42 @@ export default function App() {
 
   return (
     <>
-      <StatusBar style="dark" />
+      <StatusBar style="light" />
       <ScreenProvider>
         <NavigationContainer>
-          <View style={styles.container}>
-            <Stack.Navigator initialRouteName="MealsCategories">
-              <Stack.Screen
-                name="MealsCategories"
-                component={CategoriesScreen}
-              />
-              <Stack.Screen
-                name="MealsDescription"
-                component={CategoriesDescScreen}
-              />
-            </Stack.Navigator>
-          </View>
+          <Stack.Navigator
+            initialRouteName="MealsCategories"
+            screenOptions={{
+              headerStyle: { backgroundColor: "#351401" },
+              headerTintColor: "white",
+              contentStyle: { backgroundColor: "#3f2f25" },
+            }}
+          >
+            <Stack.Screen
+              name="MealsCategories"
+              component={CategoriesScreen}
+              options={{
+                title: "All Categories",
+              }}
+            />
+            <Stack.Screen
+              name="MealsDescription"
+              component={CategoriesDescScreen}
+              options={{
+                title: "Meals",
+              }}
+            />
+          </Stack.Navigator>
         </NavigationContainer>
       </ScreenProvider>
     </>
   );
-}
+};
+
+export default App;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    // flex: 1,
   },
 });
