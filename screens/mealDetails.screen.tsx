@@ -1,6 +1,13 @@
 import { RouteProp, useRoute } from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
-import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
+import {
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+  useWindowDimensions,
+} from "react-native";
 import { MEALS } from "../data/dummy-data";
 import {
   Details,
@@ -8,6 +15,7 @@ import {
   MealTitle,
   MoreMealDetails,
 } from "../components/screen-components/categoryComponents";
+import { dynamicGrid } from "../utils/dynamicGrid";
 
 const MealDetailsScreen = () => {
   const route = useRoute<RouteProp<any>>();
@@ -15,23 +23,51 @@ const MealDetailsScreen = () => {
 
   const [isMeal, setIsMeal] = useState<any>({});
 
+  const { width, height } = useWindowDimensions();
+
+  //   DYNAMICALLY ADD FLEX ROW TO THE SCREEN CONTINER
+  const flexContainer: any = dynamicGrid(
+    "column",
+    "row",
+    "column",
+    height,
+    width
+  );
+  //   DYNAMICALLY ADD WITH TO THE LHS CONTAINER
+  const mealDetailsImageWidth: any = dynamicGrid(
+    "100%",
+    "48%",
+    "100%",
+    height,
+    width
+  );
+  //   DYNAMICALLY ADD WITH TO THE LHS CONTAINER
+  const mealDetailsPadding: any = dynamicGrid(48, 24, 48, height, width);
+
+  const containerStyle = {
+    flexDirection: flexContainer,
+    paddingBottom: mealDetailsPadding,
+  };
+
   useEffect(() => {
+    // Get single meal by id
     const findMeal = MEALS.find((each) => each.id === detailsIdParam);
-    //   console.log(findMeal);
     setIsMeal(findMeal);
   }, []);
 
   return (
-    <View style={styles.container}>
-      <Image source={{ uri: isMeal?.imageUrl }} style={styles.image} />
-      <MealTitle title={isMeal?.title} />
-      <Details
-        duration={isMeal?.duration}
-        complexity={isMeal?.complexity}
-        affordability={isMeal?.affordability}
-      />
+    <View style={[styles.container, containerStyle]}>
+      <View style={{ width: mealDetailsImageWidth }}>
+        <Image source={{ uri: isMeal?.imageUrl }} style={styles.image} />
+        <MealTitle title={isMeal?.title} />
+        <Details
+          duration={isMeal?.duration}
+          complexity={isMeal?.complexity}
+          affordability={isMeal?.affordability}
+        />
 
-      <Line />
+        <Line />
+      </View>
 
       <ScrollView>
         <MealTitle title="Ingredients" />
@@ -57,10 +93,10 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 8,
     overflow: "hidden",
-    paddingBottom: 48,
+    // paddingBottom: 48,
   },
   image: {
-    width: "100%",
+    // width: "100%",
     height: 200,
   },
 });
