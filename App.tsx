@@ -1,6 +1,10 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View } from "react-native";
-import { CategoriesDescScreen, CategoriesScreen } from "./screens";
+import {
+  CategoriesDescScreen,
+  CategoriesScreen,
+  MealDetailsScreen,
+} from "./screens";
 import { ScreenProvider } from "./contexts/screen.context";
 import { appFonts } from "./utils/fonts";
 import AppLoading from "expo-app-loading";
@@ -53,6 +57,7 @@ const App = () => {
                 };
               }}
             />
+            <Stack.Screen name="MealDetails" component={MealDetailsScreen} />
           </Stack.Navigator>
         </NavigationContainer>
       </ScreenProvider>

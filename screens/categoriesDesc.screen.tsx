@@ -31,10 +31,11 @@ const CategoriesDescScreen = () => {
       <FlatList
         data={displayedMeals}
         renderItem={(eachObj) => {
-          const { title, imageUrl, complexity, affordability, duration } =
+          const { id, title, imageUrl, complexity, affordability, duration } =
             eachObj.item;
           return (
             <MealItems
+              id={id}
               title={title}
               imageUrl={imageUrl}
               complexity={complexity}

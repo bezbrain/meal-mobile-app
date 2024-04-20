@@ -10,8 +10,20 @@ import {
 } from "react-native";
 import shadowStyles from "../../../../styles/shadow";
 import { dynamicGrid } from "../../../../utils/dynamicGrid";
+import { NavigationProp, useNavigation } from "@react-navigation/native";
+
+// Define the type for the navigation route
+type MealDetailsRouteParams = {
+  mealId: string;
+};
+
+type RootStackParamList = {
+  MealDetails: MealDetailsRouteParams;
+  // Add other screens here if needed
+};
 
 interface MealItemsProps {
+  id: string;
   title: string;
   imageUrl: string;
   complexity: string;
@@ -20,6 +32,7 @@ interface MealItemsProps {
 }
 
 const MealItems = ({
+  id,
   title,
   imageUrl,
   complexity,
@@ -31,6 +44,16 @@ const MealItems = ({
   const mealDescWidth: any = dynamicGrid("100%", "48%", "100%", height, width);
   const mealDescMargin: any = dynamicGrid(0, 10, 0, height, width);
 
+  const navigation: NavigationProp<RootStackParamList> = useNavigation();
+
+  const handleMealDetailsPress = (id: string) => {
+    console.log(id);
+
+    navigation.navigate("MealDetails", {
+      mealId: id,
+    });
+  };
+
   return (
     <View
       style={[
@@ -41,6 +64,7 @@ const MealItems = ({
       <Pressable
         android_ripple={{ color: "#ded8d8" }}
         style={({ pressed }) => (pressed ? styles.activeMeal : null)}
+        onPress={() => handleMealDetailsPress(id)}
       >
         <View style={styles.innerContainer}>
           <View>
