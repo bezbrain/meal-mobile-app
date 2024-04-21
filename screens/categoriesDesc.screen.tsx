@@ -1,9 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useLayoutEffect } from "react";
 import { FlatList, StyleSheet, View, useWindowDimensions } from "react-native";
-import { useRoute } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { RouteProp } from "@react-navigation/native";
 import { MEALS } from "../data/dummy-data";
-import { MealItems } from "../components/screen-components/categoryComponents";
+import {
+  IconButton,
+  MealItems,
+} from "../components/screen-components/categoryComponents";
 import { useScreenContext } from "../contexts/screen.context";
 import { dynamicGrid } from "../utils/dynamicGrid";
 
@@ -13,6 +16,8 @@ const CategoriesDescScreen = () => {
   const route = useRoute<RouteProp<any>>();
   const catParamId = route.params?.categoryId;
 
+  const navigation: any = useNavigation();
+
   const { width, height } = useWindowDimensions();
 
   // FILTER BASED ON THE ID
@@ -20,11 +25,27 @@ const CategoriesDescScreen = () => {
     return each.categoryIds.indexOf(catParamId) >= 0;
   });
 
+  // GO HOME WHEN HOMW ICON IS CLICKED
+  const handleGoHome = () => {
+    navigation.navigate("MealsCategories");
+  };
+
   //   DYNAMICALLY ADD GRIP COLUMNS
   useEffect(() => {
     const containerGrid = dynamicGrid(1, 2, 1, height, width);
     setMealItemsColumns(containerGrid);
   }, [width, height]);
+
+  // RENDER HEADER ICON
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => {
+        return (
+          <IconButton icon="home" color="white" handlePress={handleGoHome} />
+        );
+      },
+    });
+  }, [navigation]);
 
   return (
     <View style={styles.container}>

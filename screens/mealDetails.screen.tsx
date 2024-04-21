@@ -20,7 +20,7 @@ import { dynamicGrid } from "../utils/dynamicGrid";
 
 const MealDetailsScreen = () => {
   const route = useRoute<RouteProp<any>>();
-  const navigation = useNavigation();
+  const navigation: any = useNavigation();
   const detailsIdParam = route.params?.mealId;
 
   const [isMeal, setIsMeal] = useState<any>({});
@@ -65,6 +65,11 @@ const MealDetailsScreen = () => {
     ]);
   };
 
+  // GO HOME WHEN HOMW ICON IS CLICKED
+  const handleGoHome = () => {
+    navigation.navigate("MealsCategories");
+  };
+
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => {
@@ -80,6 +85,7 @@ const MealDetailsScreen = () => {
               color="white"
               handlePress={handleCart}
             />
+            <IconButton icon="home" color="white" handlePress={handleGoHome} />
           </View>
         );
       },

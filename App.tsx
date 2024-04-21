@@ -14,6 +14,7 @@ import AppLoading from "expo-app-loading";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
+// import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { CATEGORIES, MEALS } from "./data/dummy-data";
 import {
   generalDrawerOptions,
