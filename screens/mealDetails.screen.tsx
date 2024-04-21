@@ -1,6 +1,7 @@
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import {
+  Alert,
   Image,
   ScrollView,
   StyleSheet,
@@ -50,10 +51,37 @@ const MealDetailsScreen = () => {
     paddingBottom: mealDetailsPadding,
   };
 
+  const handleFavourite = () => {
+    // console.log("Button is pressed");
+    Alert.alert("To Favourite", "Item successfully added to favourite", [
+      { text: "OK", style: "cancel" },
+    ]);
+  };
+
+  const handleCart = () => {
+    // console.log("Button is pressed");
+    Alert.alert("To Cart", "Item successfully added to Cart", [
+      { text: "OK", style: "cancel" },
+    ]);
+  };
+
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => {
-        return <IconButton icon="heart" color="red" />;
+        return (
+          <View style={styles.iconsHeader}>
+            <IconButton
+              icon="heart"
+              color="red"
+              handlePress={handleFavourite}
+            />
+            <IconButton
+              icon="shoppingcart"
+              color="white"
+              handlePress={handleCart}
+            />
+          </View>
+        );
       },
     });
   }, [navigation]);
@@ -103,6 +131,10 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     overflow: "hidden",
     // paddingBottom: 48,
+  },
+  iconsHeader: {
+    flexDirection: "row",
+    gap: 16,
   },
   image: {
     // width: "100%",
