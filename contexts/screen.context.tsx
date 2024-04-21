@@ -8,6 +8,7 @@ export const ScreenProvider = ({ children }: ChildrenProps) => {
   const [mealItemsColumns, setMealItemsColumns] = useState<number>(1);
 
   const [favouriteArr, setFavouriteArr] = useState([]);
+  const [cartArr, setCartArr] = useState([]);
 
   return (
     <AppContext.Provider
@@ -18,6 +19,8 @@ export const ScreenProvider = ({ children }: ChildrenProps) => {
         setMealItemsColumns,
         favouriteArr,
         setFavouriteArr,
+        cartArr,
+        setCartArr,
       }}
     >
       {children}

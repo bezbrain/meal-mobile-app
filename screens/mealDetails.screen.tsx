@@ -20,7 +20,8 @@ import { dynamicGrid } from "../utils/dynamicGrid";
 import { useScreenContext } from "../contexts/screen.context";
 
 const MealDetailsScreen = () => {
-  const { favouriteArr, setFavouriteArr } = useScreenContext();
+  const { favouriteArr, setFavouriteArr, cartArr, setCartArr } =
+    useScreenContext();
 
   const route = useRoute<RouteProp<any>>();
   const navigation: any = useNavigation();
@@ -78,10 +79,23 @@ const MealDetailsScreen = () => {
   };
 
   const handleCart = () => {
-    // console.log("Button is pressed");
-    Alert.alert("To Cart", "Item successfully added to Cart", [
-      { text: "OK", style: "cancel" },
-    ]);
+    // Check if the findMeal already exists in cartArr
+    const isAlreadyCart = cartArr.some(
+      (each: { id: string | undefined }) => each.id === findMeal?.id
+    );
+
+    if (isAlreadyCart) {
+      Alert.alert("To Cart", "Item already in cart", [
+        { text: "Cancel", style: "destructive" },
+      ]);
+    } else {
+      setCartArr((prevCart: any) => [...prevCart, findMeal]);
+      Alert.alert("To Cart", "Item successfully added to cart", [
+        { text: "OK", style: "cancel" },
+      ]);
+      // Navigate to the cart screen when item is added to cart successfully
+      navigation.navigate("Cart");
+    }
   };
 
   // GO HOME WHEN HOMW ICON IS CLICKED

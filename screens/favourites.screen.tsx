@@ -27,6 +27,7 @@ const FavouritesScreen = () => {
     navigation.navigate("Categories");
   };
 
+  // SET HEADER ICON
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => {
@@ -35,7 +36,7 @@ const FavouritesScreen = () => {
         );
       },
     });
-  }, []);
+  }, [navigation]);
 
   if (favouriteArr.length === 0) {
     return (
