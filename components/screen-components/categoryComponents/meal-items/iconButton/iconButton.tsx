@@ -12,7 +12,9 @@ const IconButton = ({ icon, color, handlePress }: IconButtonProp) => {
   return (
     <Pressable
       onPress={handlePress}
-      style={({ pressed }) => (pressed ? styles.pressed : null)}
+      style={({ pressed }) => (
+        pressed ? styles.pressed : null, styles.iconContainer
+      )}
     >
       <AntDesign name={icon} size={24} color={color} />
     </Pressable>
@@ -22,6 +24,9 @@ const IconButton = ({ icon, color, handlePress }: IconButtonProp) => {
 export default IconButton;
 
 const styles = StyleSheet.create({
+  iconContainer: {
+    paddingRight: 8,
+  },
   pressed: {
     opacity: 0.5,
   },

@@ -23,7 +23,7 @@ const CategoriesDescScreen = () => {
     return each.categoryIds.indexOf(catParamId) >= 0;
   });
 
-  // GO HOME WHEN HOMW ICON IS CLICKED
+  // GO HOME WHEN HOME ICON IS CLICKED
   const handleGoHome = () => {
     navigation.navigate("MealsCategories");
   };

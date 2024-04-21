@@ -26,7 +26,7 @@ const MealDetailsScreen = () => {
   const navigation: any = useNavigation();
   const detailsIdParam = route.params?.mealId;
 
-  const [isMeal, setIsMeal] = useState<any>({});
+  // const [isMeal, setIsMeal] = useState<any>({});
 
   const { width, height } = useWindowDimensions();
 
@@ -56,27 +56,25 @@ const MealDetailsScreen = () => {
 
   const findMeal = MEALS.find((each) => each.id === detailsIdParam);
 
+  // ADD ITEM TO FAVOURITE
   const handleFavourite = () => {
-    // console.log(findMeal);
-
-    const checkFavourite = favouriteArr?.filter(
+    // Check if the findMeal already exists in favouriteArr
+    const isAlreadyFavourite = favouriteArr.some(
       (each: { id: string | undefined }) => each.id === findMeal?.id
     );
-    // console.log(checkFavourite);
 
-    if (checkFavourite.length > 0) {
+    if (isAlreadyFavourite) {
       Alert.alert("To Favourite", "Item already in favourite", [
+        { text: "Cancel", style: "destructive" },
+      ]);
+    } else {
+      setFavouriteArr((prevFav: any) => [...prevFav, findMeal]);
+      Alert.alert("To Favourite", "Item successfully added to favourite", [
         { text: "OK", style: "cancel" },
       ]);
-      return;
+      // Navigate to the favourite screen when item is added to favourite successfully
+      navigation.navigate("Favourites");
     }
-
-    setFavouriteArr((prevFav: any) => [...prevFav, findMeal]);
-    Alert.alert("To Favourite", "Item successfully added to favourite", [
-      { text: "OK", style: "cancel" },
-    ]);
-    // console.log(favouriteArr);
-    // console.log(favouriteArr.length);
   };
 
   const handleCart = () => {
