@@ -20,6 +20,7 @@ import {
   generalStackOptions,
   itemsTitles,
 } from "./screens/screenOptions/options";
+import { MaterialIcons } from "@expo/vector-icons";
 
 interface RouteProps {
   route: any;
@@ -32,9 +33,35 @@ const Drawer = createDrawerNavigator();
 const DrawerNavigator = () => {
   return (
     <Drawer.Navigator screenOptions={generalDrawerOptions}>
-      <Drawer.Screen name="Categories" component={CategoriesScreen} />
-      <Drawer.Screen name="Favourites" component={FavouritesScreen} />
-      <Drawer.Screen name="Cart" component={CartScreen} />
+      <Drawer.Screen
+        name="Categories"
+        component={CategoriesScreen}
+        options={{
+          title: "All Categories",
+          drawerLabel: "Categories",
+          drawerIcon: ({ color, size }) => (
+            <MaterialIcons name="category" size={size} color={color} />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Favourites"
+        component={FavouritesScreen}
+        options={{
+          drawerIcon: ({ color, size }) => (
+            <MaterialIcons name="favorite-border" size={size} color={color} />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Cart"
+        component={CartScreen}
+        options={{
+          drawerIcon: ({ color, size }) => (
+            <MaterialIcons name="add-shopping-cart" size={size} color={color} />
+          ),
+        }}
+      />
     </Drawer.Navigator>
   );
 };

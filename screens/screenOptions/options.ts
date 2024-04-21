@@ -10,6 +10,9 @@ export const generalDrawerOptions = {
   headerStyle: { backgroundColor: "#351401" },
   headerTintColor: "white",
   sceneContainerStyle: { backgroundColor: "#3f2f25" },
+  drawerContentStyle: { backgroundColor: "#ccc" },
+  drawerActiveBackgroundColor: "#351401",
+  drawerActiveTintColor: "white",
 };
 
 interface DataProp {
