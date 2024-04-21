@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 
 interface MoreMealDetailsProp {
-  isMeal: string[];
+  isMeal: string[] | undefined;
 }
 
 const MoreMealDetails = ({ isMeal }: MoreMealDetailsProp) => {

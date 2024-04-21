@@ -2,9 +2,9 @@ import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 
 interface DetailsProps {
-  duration: number;
-  complexity: string;
-  affordability: string;
+  duration: number | undefined;
+  complexity: string | undefined;
+  affordability: string | undefined;
 }
 
 const Details = ({ duration, complexity, affordability }: DetailsProps) => {

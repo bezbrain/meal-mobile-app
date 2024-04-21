@@ -1,5 +1,5 @@
 import CategoryCard from "./categoryCard";
-import MealItems from "./meal-items/mealItems";
+// import MealItems from "./meal-items/mealItems";
 import Details from "./meal-items/details/details";
 import MealTitle from "./meal-items/mealTitle/mealTitle";
 import MoreMealDetails from "./meal-items/moreMealDetails/moreMealDetails";
@@ -8,7 +8,7 @@ import IconButton from "./meal-items/iconButton/iconButton";
 
 export {
   CategoryCard,
-  MealItems,
+  // MealItems,
   Details,
   MealTitle,
   MoreMealDetails,

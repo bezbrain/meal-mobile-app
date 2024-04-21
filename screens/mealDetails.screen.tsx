@@ -17,8 +17,11 @@ import {
   MoreMealDetails,
 } from "../components/screen-components/categoryComponents";
 import { dynamicGrid } from "../utils/dynamicGrid";
+import { useScreenContext } from "../contexts/screen.context";
 
 const MealDetailsScreen = () => {
+  const { favouriteArr, setFavouriteArr } = useScreenContext();
+
   const route = useRoute<RouteProp<any>>();
   const navigation: any = useNavigation();
   const detailsIdParam = route.params?.mealId;
@@ -35,7 +38,7 @@ const MealDetailsScreen = () => {
     height,
     width
   );
-  //   DYNAMICALLY ADD WITH TO THE LHS CONTAINER
+  //   DYNAMICALLY ADD WIDTH TO THE LHS CONTAINER
   const mealDetailsImageWidth: any = dynamicGrid(
     "100%",
     "48%",
@@ -43,7 +46,7 @@ const MealDetailsScreen = () => {
     height,
     width
   );
-  //   DYNAMICALLY ADD WITH TO THE LHS CONTAINER
+  //   DYNAMICALLY ADD WIDTH TO THE LHS CONTAINER
   const mealDetailsPadding: any = dynamicGrid(48, 24, 48, height, width);
 
   const containerStyle = {
@@ -51,11 +54,29 @@ const MealDetailsScreen = () => {
     paddingBottom: mealDetailsPadding,
   };
 
+  const findMeal = MEALS.find((each) => each.id === detailsIdParam);
+
   const handleFavourite = () => {
-    // console.log("Button is pressed");
+    // console.log(findMeal);
+
+    const checkFavourite = favouriteArr?.filter(
+      (each: { id: string | undefined }) => each.id === findMeal?.id
+    );
+    // console.log(checkFavourite);
+
+    if (checkFavourite.length > 0) {
+      Alert.alert("To Favourite", "Item already in favourite", [
+        { text: "OK", style: "cancel" },
+      ]);
+      return;
+    }
+
+    setFavouriteArr((prevFav: any) => [...prevFav, findMeal]);
     Alert.alert("To Favourite", "Item successfully added to favourite", [
       { text: "OK", style: "cancel" },
     ]);
+    // console.log(favouriteArr);
+    // console.log(favouriteArr.length);
   };
 
   const handleCart = () => {
@@ -92,21 +113,15 @@ const MealDetailsScreen = () => {
     });
   }, [navigation]);
 
-  useEffect(() => {
-    // Get single meal by id
-    const findMeal = MEALS.find((each) => each.id === detailsIdParam);
-    setIsMeal(findMeal);
-  }, []);
-
   return (
     <View style={[styles.container, containerStyle]}>
       <View style={{ width: mealDetailsImageWidth }}>
-        <Image source={{ uri: isMeal?.imageUrl }} style={styles.image} />
-        <MealTitle title={isMeal?.title} />
+        <Image source={{ uri: findMeal?.imageUrl }} style={styles.image} />
+        <MealTitle title={findMeal?.title} />
         <Details
-          duration={isMeal?.duration}
-          complexity={isMeal?.complexity}
-          affordability={isMeal?.affordability}
+          duration={findMeal?.duration}
+          complexity={findMeal?.complexity}
+          affordability={findMeal?.affordability}
         />
 
         <Line />
@@ -114,12 +129,12 @@ const MealDetailsScreen = () => {
 
       <ScrollView>
         <MealTitle title="Ingredients" />
-        <MoreMealDetails isMeal={isMeal?.ingredients} />
+        <MoreMealDetails isMeal={findMeal?.ingredients} />
 
         <Line />
 
         <MealTitle title="Steps" />
-        <MoreMealDetails isMeal={isMeal?.steps} />
+        <MoreMealDetails isMeal={findMeal?.steps} />
       </ScrollView>
     </View>
   );

@@ -3,12 +3,10 @@ import { FlatList, StyleSheet, View, useWindowDimensions } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { RouteProp } from "@react-navigation/native";
 import { MEALS } from "../data/dummy-data";
-import {
-  IconButton,
-  MealItems,
-} from "../components/screen-components/categoryComponents";
+import { IconButton } from "../components/screen-components/categoryComponents";
 import { useScreenContext } from "../contexts/screen.context";
 import { dynamicGrid } from "../utils/dynamicGrid";
+import MealItems from "../components/screen-components/categoryComponents/meal-items/mealItems";
 
 const CategoriesDescScreen = () => {
   const { mealItemsColumns, setMealItemsColumns } = useScreenContext();

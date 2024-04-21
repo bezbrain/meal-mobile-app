@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, Text } from "react-native";
 
 interface MealTitleProp {
-  title: string;
+  title: string | undefined;
 }
 
 const MealTitle = ({ title }: MealTitleProp) => {
