@@ -2,6 +2,7 @@ import "react-native-gesture-handler";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet } from "react-native";
 import {
+  CartScreen,
   CategoriesDescScreen,
   CategoriesScreen,
   FavouritesScreen,
@@ -33,6 +34,7 @@ const DrawerNavigator = () => {
     <Drawer.Navigator screenOptions={generalDrawerOptions}>
       <Drawer.Screen name="Categories" component={CategoriesScreen} />
       <Drawer.Screen name="Favourites" component={FavouritesScreen} />
+      <Drawer.Screen name="Cart" component={CartScreen} />
     </Drawer.Navigator>
   );
 };
