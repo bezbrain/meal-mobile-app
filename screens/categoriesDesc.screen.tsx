@@ -47,7 +47,7 @@ const CategoriesDescScreen = () => {
   }, [navigation]);
 
   useEffect(() => {
-    setIsFavCart(false); // Remove button
+    // setIsFavCart(false); // Remove button
   }, []);
 
   return (

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import {
   Pressable,
   Text,
@@ -30,6 +30,8 @@ interface MealItemsProps {
   complexity: string;
   affordability: string;
   duration: number;
+  handlePress?: () => void;
+  button?: ReactNode;
 }
 
 const MealItems = ({
@@ -39,6 +41,8 @@ const MealItems = ({
   complexity,
   affordability,
   duration,
+  handlePress,
+  button,
 }: MealItemsProps) => {
   const { width, height } = useWindowDimensions();
 
@@ -76,7 +80,7 @@ const MealItems = ({
             complexity={complexity}
             duration={duration}
             affordability={affordability}
-            title="remove"
+            button={button}
           />
         </View>
       </Pressable>

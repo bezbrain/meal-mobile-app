@@ -1,10 +1,11 @@
-import React, { useEffect, useLayoutEffect } from "react";
+import React, { useLayoutEffect } from "react";
 import {
   FlatList,
   StyleSheet,
   View,
   useWindowDimensions,
   Alert,
+  Button,
 } from "react-native";
 import { useScreenContext } from "../contexts/screen.context";
 import MealItems from "../components/screen-components/categoryComponents/meal-items/mealItems";
@@ -13,7 +14,7 @@ import { useNavigation } from "@react-navigation/native";
 import { Icons, NoItem } from "../components/general";
 
 const CartScreen = () => {
-  const { cartArr, setCartArr, setIsFavCart } = useScreenContext();
+  const { cartArr, setCartArr } = useScreenContext();
 
   const navigation: any = useNavigation();
 
@@ -45,6 +46,16 @@ const CartScreen = () => {
     );
   };
 
+  const handleSingleDelete = (id: string) => {
+    Alert.alert(
+      "Item deleted!",
+      "An item has been successfully deleted from cart",
+      [{ text: "OK", style: "cancel" }]
+    );
+    const newCartArr = cartArr.filter((each: { id: string }) => each.id !== id);
+    setCartArr(newCartArr);
+  };
+
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => {
@@ -57,10 +68,6 @@ const CartScreen = () => {
       },
     });
   }, [navigation]);
-
-  useEffect(() => {
-    setIsFavCart(true); // Show button
-  }, []);
 
   if (cartArr.length === 0) {
     return <NoItem value="CART" />;
@@ -82,6 +89,13 @@ const CartScreen = () => {
               complexity={complexity}
               affordability={affordability}
               duration={duration}
+              button={
+                <Button
+                  title="remove"
+                  color="#351401"
+                  onPress={() => handleSingleDelete(id)}
+                />
+              }
             />
           );
         }}

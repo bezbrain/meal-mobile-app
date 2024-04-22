@@ -20,7 +20,7 @@ import { dynamicGrid } from "../utils/dynamicGrid";
 import { useScreenContext } from "../contexts/screen.context";
 
 const MealDetailsScreen = () => {
-  const { favouriteArr, setFavouriteArr, cartArr, setCartArr, setIsFavCart } =
+  const { favouriteArr, setFavouriteArr, cartArr, setCartArr } =
     useScreenContext();
 
   const route = useRoute<RouteProp<any>>();
@@ -59,6 +59,8 @@ const MealDetailsScreen = () => {
 
   // ADD ITEM TO FAVOURITE
   const handleFavourite = () => {
+    // setIsFavCart(true); // Show button
+
     // Check if the findMeal already exists in favouriteArr
     const isAlreadyFavourite = favouriteArr.some(
       (each: { id: string | undefined }) => each.id === findMeal?.id
@@ -75,12 +77,12 @@ const MealDetailsScreen = () => {
       ]);
       // Navigate to the favourite screen when item is added to favourite successfully
       navigation.navigate("Favourites");
-
-      setIsFavCart(true); // Show button
     }
   };
 
   const handleCart = () => {
+    // setIsFavCart(true); // Show button
+
     // Check if the findMeal already exists in cartArr
     const isAlreadyCart = cartArr.some(
       (each: { id: string | undefined }) => each.id === findMeal?.id
@@ -97,8 +99,6 @@ const MealDetailsScreen = () => {
       ]);
       // Navigate to the cart screen when item is added to cart successfully
       navigation.navigate("Cart");
-
-      setIsFavCart(true); // Show button
     }
   };
 
@@ -130,7 +130,7 @@ const MealDetailsScreen = () => {
   }, [navigation]);
 
   useEffect(() => {
-    setIsFavCart(false); // Remove button
+    // setIsFavCart(false); // Remove button
   }, []);
 
   return (

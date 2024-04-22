@@ -6,6 +6,7 @@ import {
   View,
   useWindowDimensions,
   Alert,
+  Button,
 } from "react-native";
 import { useScreenContext } from "../contexts/screen.context";
 import MealItems from "../components/screen-components/categoryComponents/meal-items/mealItems";
@@ -46,6 +47,18 @@ const FavouritesScreen = () => {
     );
   };
 
+  const handleSingleDelete = (id: string) => {
+    Alert.alert(
+      "Item deleted!",
+      "An item has been successfully deleted from favourite",
+      [{ text: "OK", style: "cancel" }]
+    );
+    const newFavouriteArr = favouriteArr.filter(
+      (each: { id: string }) => each.id !== id
+    );
+    setFavouriteArr(newFavouriteArr);
+  };
+
   // SET HEADER ICON
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -61,7 +74,7 @@ const FavouritesScreen = () => {
   }, [navigation]);
 
   useEffect(() => {
-    setIsFavCart(true); // Show button
+    // setIsFavCart(true); // Show button
   }, []);
 
   if (favouriteArr.length === 0) {
@@ -84,6 +97,13 @@ const FavouritesScreen = () => {
               complexity={complexity}
               affordability={affordability}
               duration={duration}
+              button={
+                <Button
+                  title="remove"
+                  color="#351401"
+                  onPress={() => handleSingleDelete(id)}
+                />
+              }
             />
           );
         }}

@@ -23,7 +23,7 @@ const CategoriesScreen = () => {
   }, [width, height]);
 
   useEffect(() => {
-    setIsFavCart(false); // Remove button
+    // setIsFavCart(false); // Remove button
   }, []);
 
   return (
