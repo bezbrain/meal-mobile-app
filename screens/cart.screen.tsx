@@ -36,7 +36,7 @@ const CartScreen = () => {
 
   const handleDeleteAll = () => {
     Alert.alert(
-      "Cart",
+      "Cart Removal",
       "Are you sure you want to remove all items from the cart?",
       [
         { text: "NO", style: "cancel" },

@@ -28,11 +28,22 @@ const FavouritesScreen = () => {
     navigation.navigate("Categories");
   };
 
-  const handleDeleteAll = () => {
+  const deleteAll = () => {
     setFavouriteArr([]);
     Alert.alert("Favourite cleared", "All items have been removed", [
       { text: "OK", style: "cancel" },
     ]);
+  };
+
+  const handleDeleteAll = () => {
+    Alert.alert(
+      "Favourite Removal",
+      "Are you sure you want to remove all items from favourite?",
+      [
+        { text: "NO", style: "cancel" },
+        { text: "YES", onPress: deleteAll },
+      ]
+    );
   };
 
   // SET HEADER ICON
