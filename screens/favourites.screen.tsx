@@ -5,6 +5,7 @@ import {
   StyleSheet,
   View,
   useWindowDimensions,
+  Alert,
 } from "react-native";
 import { useScreenContext } from "../contexts/screen.context";
 import MealItems from "../components/screen-components/categoryComponents/meal-items/mealItems";
@@ -13,7 +14,7 @@ import { useNavigation } from "@react-navigation/native";
 import { Icons, NoItem } from "../components/general";
 
 const FavouritesScreen = () => {
-  const { favouriteArr, setIsFavCart } = useScreenContext();
+  const { favouriteArr, setFavouriteArr, setIsFavCart } = useScreenContext();
 
   const navigation: any = useNavigation();
 
@@ -28,7 +29,10 @@ const FavouritesScreen = () => {
   };
 
   const handleDeleteAll = () => {
-    //
+    setFavouriteArr([]);
+    Alert.alert("Favourite cleared", "All items have been removed", [
+      { text: "OK", style: "cancel" },
+    ]);
   };
 
   // SET HEADER ICON

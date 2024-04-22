@@ -3,18 +3,17 @@ import {
   FlatList,
   StyleSheet,
   View,
-  Text,
   useWindowDimensions,
+  Alert,
 } from "react-native";
 import { useScreenContext } from "../contexts/screen.context";
 import MealItems from "../components/screen-components/categoryComponents/meal-items/mealItems";
 import { dynamicGrid } from "../utils/dynamicGrid";
 import { useNavigation } from "@react-navigation/native";
-import { IconButton } from "../components/screen-components/categoryComponents";
 import { Icons, NoItem } from "../components/general";
 
 const CartScreen = () => {
-  const { cartArr, setIsFavCart } = useScreenContext();
+  const { cartArr, setCartArr, setIsFavCart } = useScreenContext();
 
   const navigation: any = useNavigation();
 
@@ -28,8 +27,22 @@ const CartScreen = () => {
     navigation.navigate("Categories");
   };
 
+  const deleteAll = () => {
+    setCartArr([]);
+    Alert.alert("Cart cleared", "All items have been removed", [
+      { text: "OK", style: "cancel" },
+    ]);
+  };
+
   const handleDeleteAll = () => {
-    //
+    Alert.alert(
+      "Cart",
+      "Are you sure you want to remove all items from the cart?",
+      [
+        { text: "NO", style: "cancel" },
+        { text: "YES", onPress: deleteAll },
+      ]
+    );
   };
 
   useLayoutEffect(() => {
