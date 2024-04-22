@@ -11,6 +11,7 @@ import MealItems from "../components/screen-components/categoryComponents/meal-i
 import { dynamicGrid } from "../utils/dynamicGrid";
 import { useNavigation } from "@react-navigation/native";
 import { IconButton } from "../components/screen-components/categoryComponents";
+import { NoItem } from "../components/general";
 
 const CartScreen = () => {
   const { cartArr } = useScreenContext();
@@ -38,11 +39,7 @@ const CartScreen = () => {
   }, [navigation]);
 
   if (cartArr.length === 0) {
-    return (
-      <View style={styles.noItemContainer}>
-        <Text style={styles.noItem}>NO ITEMS IN CART</Text>
-      </View>
-    );
+    return <NoItem value="CART" />;
   }
 
   return (
@@ -77,14 +74,5 @@ export default CartScreen;
 const styles = StyleSheet.create({
   rootContainer: {
     padding: 8,
-  },
-  noItemContainer: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  noItem: {
-    color: "white",
-    fontSize: 20,
   },
 });

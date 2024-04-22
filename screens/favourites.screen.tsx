@@ -11,6 +11,7 @@ import MealItems from "../components/screen-components/categoryComponents/meal-i
 import { dynamicGrid } from "../utils/dynamicGrid";
 import { useNavigation } from "@react-navigation/native";
 import { IconButton } from "../components/screen-components/categoryComponents";
+import { NoItem } from "../components/general";
 
 const FavouritesScreen = () => {
   const { favouriteArr } = useScreenContext();
@@ -39,11 +40,7 @@ const FavouritesScreen = () => {
   }, [navigation]);
 
   if (favouriteArr.length === 0) {
-    return (
-      <View style={styles.noItemContainer}>
-        <Text style={styles.noItem}>NO ITEMS IN FAVOURITE</Text>
-      </View>
-    );
+    return <NoItem value="FAVOURITE" />;
   }
 
   return (
@@ -78,14 +75,5 @@ export default FavouritesScreen;
 const styles = StyleSheet.create({
   rootContainer: {
     padding: 8,
-  },
-  noItemContainer: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  noItem: {
-    color: "white",
-    fontSize: 20,
   },
 });
