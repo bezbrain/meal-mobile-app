@@ -20,7 +20,7 @@ import { dynamicGrid } from "../utils/dynamicGrid";
 import { useScreenContext } from "../contexts/screen.context";
 
 const MealDetailsScreen = () => {
-  const { favouriteArr, setFavouriteArr, cartArr, setCartArr } =
+  const { favouriteArr, setFavouriteArr, cartArr, setCartArr, setIsFavCart } =
     useScreenContext();
 
   const route = useRoute<RouteProp<any>>();
@@ -75,6 +75,8 @@ const MealDetailsScreen = () => {
       ]);
       // Navigate to the favourite screen when item is added to favourite successfully
       navigation.navigate("Favourites");
+
+      setIsFavCart(true); // Show button
     }
   };
 
@@ -95,6 +97,8 @@ const MealDetailsScreen = () => {
       ]);
       // Navigate to the cart screen when item is added to cart successfully
       navigation.navigate("Cart");
+
+      setIsFavCart(true); // Show button
     }
   };
 
@@ -124,6 +128,10 @@ const MealDetailsScreen = () => {
       },
     });
   }, [navigation]);
+
+  useEffect(() => {
+    setIsFavCart(false); // Remove button
+  }, []);
 
   return (
     <View style={[styles.container, containerStyle]}>

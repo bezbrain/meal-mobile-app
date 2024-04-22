@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from "react";
+import React, { useEffect, useLayoutEffect } from "react";
 import {
   FlatList,
   Text,
@@ -10,11 +10,10 @@ import { useScreenContext } from "../contexts/screen.context";
 import MealItems from "../components/screen-components/categoryComponents/meal-items/mealItems";
 import { dynamicGrid } from "../utils/dynamicGrid";
 import { useNavigation } from "@react-navigation/native";
-import { IconButton } from "../components/screen-components/categoryComponents";
 import { Icons, NoItem } from "../components/general";
 
 const FavouritesScreen = () => {
-  const { favouriteArr } = useScreenContext();
+  const { favouriteArr, setIsFavCart } = useScreenContext();
 
   const navigation: any = useNavigation();
 
@@ -45,6 +44,10 @@ const FavouritesScreen = () => {
       },
     });
   }, [navigation]);
+
+  useEffect(() => {
+    setIsFavCart(true); // Show button
+  }, []);
 
   if (favouriteArr.length === 0) {
     return <NoItem value="FAVOURITE" />;

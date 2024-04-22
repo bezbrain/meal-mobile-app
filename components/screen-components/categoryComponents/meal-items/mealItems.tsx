@@ -76,6 +76,7 @@ const MealItems = ({
             complexity={complexity}
             duration={duration}
             affordability={affordability}
+            title="remove"
           />
         </View>
       </Pressable>

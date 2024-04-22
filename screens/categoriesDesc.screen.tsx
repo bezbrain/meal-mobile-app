@@ -9,7 +9,8 @@ import { dynamicGrid } from "../utils/dynamicGrid";
 import MealItems from "../components/screen-components/categoryComponents/meal-items/mealItems";
 
 const CategoriesDescScreen = () => {
-  const { mealItemsColumns, setMealItemsColumns } = useScreenContext();
+  const { mealItemsColumns, setMealItemsColumns, setIsFavCart } =
+    useScreenContext();
 
   const route = useRoute<RouteProp<any>>();
   const catParamId = route.params?.categoryId;
@@ -44,6 +45,10 @@ const CategoriesDescScreen = () => {
       },
     });
   }, [navigation]);
+
+  useEffect(() => {
+    setIsFavCart(false); // Remove button
+  }, []);
 
   return (
     <View style={styles.container}>

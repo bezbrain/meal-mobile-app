@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from "react";
+import React, { useEffect, useLayoutEffect } from "react";
 import {
   FlatList,
   StyleSheet,
@@ -14,7 +14,7 @@ import { IconButton } from "../components/screen-components/categoryComponents";
 import { Icons, NoItem } from "../components/general";
 
 const CartScreen = () => {
-  const { cartArr } = useScreenContext();
+  const { cartArr, setIsFavCart } = useScreenContext();
 
   const navigation: any = useNavigation();
 
@@ -44,6 +44,10 @@ const CartScreen = () => {
       },
     });
   }, [navigation]);
+
+  useEffect(() => {
+    setIsFavCart(true); // Show button
+  }, []);
 
   if (cartArr.length === 0) {
     return <NoItem value="CART" />;
