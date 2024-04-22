@@ -11,7 +11,7 @@ import MealItems from "../components/screen-components/categoryComponents/meal-i
 import { dynamicGrid } from "../utils/dynamicGrid";
 import { useNavigation } from "@react-navigation/native";
 import { IconButton } from "../components/screen-components/categoryComponents";
-import { NoItem } from "../components/general";
+import { Icons, NoItem } from "../components/general";
 
 const CartScreen = () => {
   const { cartArr } = useScreenContext();
@@ -28,11 +28,18 @@ const CartScreen = () => {
     navigation.navigate("Categories");
   };
 
+  const handleDeleteAll = () => {
+    //
+  };
+
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => {
         return (
-          <IconButton icon="home" color="white" handlePress={handleGoHome} />
+          <Icons
+            handleDeleteAll={handleDeleteAll}
+            handleGoHome={handleGoHome}
+          />
         );
       },
     });
