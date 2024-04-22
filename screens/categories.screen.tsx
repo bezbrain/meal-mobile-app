@@ -6,8 +6,7 @@ import { useScreenContext } from "../contexts/screen.context";
 import { dynamicGrid } from "../utils/dynamicGrid";
 
 const CategoriesScreen = () => {
-  const { categoryColumns, setCategoryColumns, setIsFavCart } =
-    useScreenContext();
+  const { categoryColumns, setCategoryColumns } = useScreenContext();
 
   const { width, height } = useWindowDimensions();
 
@@ -21,10 +20,6 @@ const CategoriesScreen = () => {
     const columns = dynamicGrid(2, 4, 2, height, width);
     setCategoryColumns(columns);
   }, [width, height]);
-
-  useEffect(() => {
-    // setIsFavCart(false); // Remove button
-  }, []);
 
   return (
     <View style={catPaddingStyles}>

@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect } from "react";
+import React, { useLayoutEffect } from "react";
 import {
   FlatList,
   Text,
@@ -15,7 +15,7 @@ import { useNavigation } from "@react-navigation/native";
 import { Icons, NoItem } from "../components/general";
 
 const FavouritesScreen = () => {
-  const { favouriteArr, setFavouriteArr, setIsFavCart } = useScreenContext();
+  const { favouriteArr, setFavouriteArr } = useScreenContext();
 
   const navigation: any = useNavigation();
 
@@ -72,10 +72,6 @@ const FavouritesScreen = () => {
       },
     });
   }, [navigation]);
-
-  useEffect(() => {
-    // setIsFavCart(true); // Show button
-  }, []);
 
   if (favouriteArr.length === 0) {
     return <NoItem value="FAVOURITE" />;

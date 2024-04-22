@@ -1,5 +1,5 @@
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { useLayoutEffect } from "react";
 import {
   Alert,
   Image,
@@ -128,10 +128,6 @@ const MealDetailsScreen = () => {
       },
     });
   }, [navigation]);
-
-  useEffect(() => {
-    // setIsFavCart(false); // Remove button
-  }, []);
 
   return (
     <View style={[styles.container, containerStyle]}>

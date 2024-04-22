@@ -9,7 +9,6 @@ export const ScreenProvider = ({ children }: ChildrenProps) => {
 
   const [favouriteArr, setFavouriteArr] = useState([]);
   const [cartArr, setCartArr] = useState([]);
-  // const [isFavCart, setIsFavCart] = useState(false);
 
   return (
     <AppContext.Provider
@@ -22,8 +21,6 @@ export const ScreenProvider = ({ children }: ChildrenProps) => {
         setFavouriteArr,
         cartArr,
         setCartArr,
-        // isFavCart,
-        // setIsFavCart,
       }}
     >
       {children}
