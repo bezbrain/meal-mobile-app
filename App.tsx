@@ -1,6 +1,6 @@
 import "react-native-gesture-handler";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import {
   CartScreen,
   CategoriesDescScreen,
@@ -10,11 +10,10 @@ import {
 } from "./screens";
 import { ScreenProvider } from "./contexts/screen.context";
 import { appFonts } from "./utils/fonts";
-import AppLoading from "expo-app-loading";
+import * as SplashScreen from "expo-splash-screen";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
-// import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { CATEGORIES, MEALS } from "./data/dummy-data";
 import {
   generalDrawerOptions,
@@ -22,6 +21,10 @@ import {
   itemsTitles,
 } from "./screens/screenOptions/options";
 import { MaterialIcons } from "@expo/vector-icons";
+import { useCallback, useEffect } from "react";
+
+// Keep the splash screen visible while we fetch resources
+SplashScreen.preventAutoHideAsync();
 
 interface RouteProps {
   route: any;
@@ -70,15 +73,35 @@ const DrawerNavigator = () => {
 const App = () => {
   const fontsLoaded = appFonts();
 
+  // HANDLE INTIAL SCREEN DISPLAY WHEN ALL FONTS HAVE NOT BEEN LOADED
+  useEffect(() => {
+    async function prepare() {
+      try {
+        await SplashScreen.preventAutoHideAsync();
+      } catch (error) {
+        console.warn(error);
+      }
+    }
+
+    prepare();
+  }, []);
+
+  const onLayoutRootView = useCallback(async () => {
+    if (fontsLoaded) {
+      // This tells the splash screen to hide immediately!
+      await SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
+
   if (!fontsLoaded) {
-    return <AppLoading />;
+    return null;
   }
 
   return (
     <>
       <StatusBar style="light" />
       <ScreenProvider>
-        <NavigationContainer>
+        <NavigationContainer onReady={onLayoutRootView}>
           <Stack.Navigator
             initialRouteName="MealsCategories"
             screenOptions={generalStackOptions}
