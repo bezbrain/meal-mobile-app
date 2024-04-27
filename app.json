@@ -17,7 +17,8 @@
     ],
     "ios": {
       "buildNumber": "1.0.0",
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.bezbrain.recipebook"
     },
     "android": {
       "adaptiveIcon": {
